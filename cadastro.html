@@ -1,35 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Contas</title>
+  <meta name="theme-color" content="#2196f3">
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
+  <title>Cadastro de Contas</title>
 </head>
 <body>
-  <div class="container">
+  <header>
     <h1>Cadastro de Contas</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="resumo.html">Resumo</a></li>
+        <li><a href="index.html">Resumo Geral</a></li>
+        <li><a href="cadastro.html" class="ativo">Cadastro de Contas</a></li>
         <li><a href="graficos.html">Gráficos</a></li>
+        <li><a href="dre.html">DRE</a></li>
+        <li><a href="estrutura.html">Estrutura Patrimonial</a></li>
       </ul>
     </nav>
+  </header>  <main>
+    <form id="conta-form">
+      <label for="nome-conta">Nome da Conta:</label>
+      <input type="text" id="nome-conta" required><label for="valor-conta">Valor (R$):</label>
+  <input type="number" id="valor-conta" required>
 
-    <h2>Nova Conta</h2>
-    <input type="text" id="nome" placeholder="Nome da conta" />
-    <input type="number" id="valor" placeholder="Valor (R$)" />
-    <select id="tipo">
-      <option value="ativo">Ativo</option>
-      <option value="passivo">Passivo</option>
-    </select>
-    <button onclick="adicionarConta()">Adicionar Conta</button>
+  <label for="tipo-conta">Tipo:</label>
+  <select id="tipo-conta">
+    <option value="ativo">Ativo</option>
+    <option value="passivo">Passivo</option>
+    <option value="receita">Receita</option>
+    <option value="despesa">Despesa</option>
+  </select>
 
-    <h2>Contas Registradas</h2>
-    <ul id="listaContas"></ul>
-  </div>
+  <button type="submit">Adicionar Conta</button>
+</form>
 
-  <script src="app.js"></script>
-</body>
+<section>
+  <h3>Contas Registradas</h3>
+  <div id="contas-container"></div>
+</section>
+
+  </main>  <script src="cadastro.js"></script></body>
 </html>
