@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balanço Patrimonial</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a73e8" />
+</head>
+<body>
+  <h1>Balanço Patrimonial</h1>
+  <nav>
+    <a href="index.html">Resumo</a> |
+    <a href="cadastro.html">Cadastro</a> |
+    <a href="graficos.html">Gráficos</a>
+  </nav>  <section>
+    <h2>Resumo Geral</h2>
+    <p>Total de Ativos: R$ <span id="ativos-total">0.00</span></p>
+    <p>Total de Passivos: R$ <span id="passivos-total">0.00</span></p>
+    <p>Saldo Ideal (30% dos Ativos): R$ <span id="saldo-ideal">0.00</span></p>
+    <p>Recomendação: <span id="recomendacao">-</span></p>
+  </section>  <section>
+    <h2>Contas Registradas</h2>
+    <div id="contas-container"></div>
+  </section>  <script src="app.js"></script>  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js").then(() => {
+        console.log("Service Worker registrado com sucesso");
+      }).catch((error) => {
+        console.log("Falha ao registrar o Service Worker:", error);
+      });
+    }
+  </script></body>
+</html>
