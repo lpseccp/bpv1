@@ -1,24 +1,98 @@
-// dre.js const dreForm = document.getElementById("dre-form"); const dreContainer = document.getElementById("dre-container"); const receitasTotalEl = document.getElementById("receitas-total"); const despesasTotalEl = document.getElementById("despesas-total"); const resultadoEl = document.getElementById("resultado");
+// dre.js
+const dreForm = document.getElementById("dre-form");
+const receitasContainer = document.getElementById("receitas-lista");
+const despesasContainer = document.getElementById("despesas-lista");
+const totalReceitasEl = document.getElementById("total-receitas");
+const totalDespesasEl = document.getElementById("total-despesas");
+const lucroPrejuizoEl = document.getElementById("lucro-prejuizo");
 
-let dreItens = JSON.parse(localStorage.getItem("dreItens")) || [];
+let dreDados = JSON.parse(localStorage.getItem("dreDados")) || [];
 
-function salvarDRE() { localStorage.setItem("dreItens", JSON.stringify(dreItens)); }
+function salvarDre() {
+  localStorage.setItem("dreDados", JSON.stringify(dreDados));
+}
 
-function renderizarDRE() { dreContainer.innerHTML = ""; dreItens.forEach((item, index) => { const div = document.createElement("div"); div.className = "dre-item"; div.innerHTML = <strong>${item.nome}</strong>: R$ ${item.valor.toFixed(2)} (${item.tipo}) <button onclick="removerDRE(${index})">Remover</button>; dreContainer.appendChild(div); }); atualizarTotaisDRE(); }
+function renderizarDre() {
+  receitasContainer.innerHTML = "";
+  despesasContainer.innerHTML = "";
 
-function removerDRE(index) { dreItens.splice(index, 1); salvarDRE(); renderizarDRE(); }
+  const receitas = dreDados.filter(item => item.tipo === "receita");
+  const despesas = dreDados.filter(item => item.tipo === "despesa");
 
-dreForm.addEventListener("submit", (e) => { e.preventDefault(); const nome = document.getElementById("nome-dre").value; const valor = parseFloat(document.getElementById("valor-dre").value); const tipo = document.getElementById("tipo-dre").value;
+  let totalReceitas = 0;
+  let totalDespesas = 0;
 
-if (!nome || isNaN(valor)) return;
+  receitas.forEach((item, index) => {
+    totalReceitas += item.valor;
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `${item.nome}: R$ ${item.valor.toFixed(2)} <button onclick="removerItem(${index})">Remover</button>`;
+    receitasContainer.appendChild(div);
+  });
 
-dreItens.push({ nome, valor, tipo }); salvarDRE(); renderizarDRE(); dreForm.reset(); });
+  despesas.forEach((item, index) => {
+    totalDespesas += item.valor;
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `${item.nome}: R$ ${item.valor.toFixed(2)} <button onclick="removerItem(${index})">Remover</button>`;
+    despesasContainer.appendChild(div);
+  });
 
-function atualizarTotaisDRE() { const receitas = dreItens.filter(i => i.tipo === "receita"); const despesas = dreItens.filter(i => i.tipo === "despesa");
+  const lucro = totalReceitas - totalDespesas;
 
-const totalReceitas = receitas.reduce((acc, i) => acc + i.valor, 0); const totalDespesas = despesas.reduce((acc, i) => acc + i.valor, 0); const resultado = totalReceitas - totalDespesas;
+  totalReceitasEl.textContent = totalReceitas.toFixed(2);
+  totalDespesasEl.textContent = totalDespesas.toFixed(2);
+  lucroPrejuizoEl.textContent = `${lucro >= 0 ? 'Lucro' : 'Prejuízo'}: R$ ${Math.abs(lucro).toFixed(2)}`;
 
-receitasTotalEl.textContent = totalReceitas.toFixed(2); despesasTotalEl.textContent = totalDespesas.toFixed(2); resultadoEl.textContent = ${resultado >= 0 ? "Lucro" : "Prejuízo"}: R$ ${Math.abs(resultado).toFixed(2)}; }
+  desenharGraficoReceitaDespesa(totalReceitas, totalDespesas);
+}
 
-renderizarDRE();
+function removerItem(index) {
+  dreDados.splice(index, 1);
+  salvarDre();
+  renderizarDre();
+}
 
+dreForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const nome = document.getElementById("nome-dre").value;
+  const valor = parseFloat(document.getElementById("valor-dre").value);
+  const tipo = document.getElementById("tipo-dre").value;
+
+  if (!nome || isNaN(valor)) return;
+
+  dreDados.push({ nome, valor, tipo });
+  salvarDre();
+  renderizarDre();
+  dreForm.reset();
+});
+
+function desenharGraficoReceitaDespesa(receitas, despesas) {
+  const ctx = document.getElementById("grafico-dre").getContext("2d");
+
+  if (window.dreChart) {
+    window.dreChart.destroy();
+  }
+
+  window.dreChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Receitas", "Despesas"],
+      datasets: [{
+        label: "R$",
+        data: [receitas, despesas],
+        backgroundColor: ["#4caf50", "#f44336"]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+// Inicializar
+renderizarDre();
