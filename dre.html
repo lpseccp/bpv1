@@ -2,21 +2,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DRE - Demonstração do Resultado do Exercício</title>
+  <title>Demonstração do Resultado do Exercício (DRE)</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>DRE - Demonstração do Resultado do Exercício</h1>
     <nav>
-      <a href="index.html">Cadastro</a>
-      <a href="dre.html">DRE</a>
-      <a href="graficos.html">Gráficos</a>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="balanco.html">Balanço Patrimonial</a></li>
+        <li><a href="indicadores.html">Indicadores</a></li>
+        <li><a href="comparativo.html">Comparativo</a></li>
+      </ul>
     </nav>
   </header>  <main>
     <form id="dre-form">
       <input type="text" id="descricao" placeholder="Descrição" required>
-      <input type="number" id="valor" placeholder="Valor" required>
+      <input type="number" id="valor" placeholder="Valor (R$)" required>
       <select id="tipo">
         <option value="receita">Receita</option>
         <option value="despesa">Despesa</option>
@@ -27,8 +30,12 @@
 <section id="dre-resumo">
   <p><strong>Total de Receitas:</strong> R$ <span id="total-receitas">0.00</span></p>
   <p><strong>Total de Despesas:</strong> R$ <span id="total-despesas">0.00</span></p>
-  <p><strong>Lucro/Prejuízo:</strong> R$ <span id="resultado-final">0.00</span></p>
+  <p><strong>Lucro/Prejuízo:</strong> R$ <span id="resultado">0.00</span></p>
 </section>
 
-  </main>  <script src="dre.js"></script></body>
+<canvas id="grafico-dre" width="400" height="200"></canvas>
+
+  </main>  <footer>
+    <p>&copy; 2025 - Seu Nome ou Empresa</p>
+  </footer>  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <script src="dre.js"></script></body>
 </html>
