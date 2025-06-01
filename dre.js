@@ -1,98 +1,67 @@
 // dre.js
-const dreForm = document.getElementById("dre-form");
-const receitasContainer = document.getElementById("receitas-lista");
-const despesasContainer = document.getElementById("despesas-lista");
-const totalReceitasEl = document.getElementById("total-receitas");
-const totalDespesasEl = document.getElementById("total-despesas");
-const lucroPrejuizoEl = document.getElementById("lucro-prejuizo");
 
-let dreDados = JSON.parse(localStorage.getItem("dreDados")) || [];
+document.addEventListener("DOMContentLoaded", () => { const form = document.getElementById("dre-form"); const receitaInput = document.getElementById("receita"); const custoInput = document.getElementById("custo"); const despesasInput = document.getElementById("despesas"); const resultadoEl = document.getElementById("resultado"); const graficoCtx = document.getElementById("grafico-dre").getContext("2d");
 
-function salvarDre() {
-  localStorage.setItem("dreDados", JSON.stringify(dreDados));
+let dreData = JSON.parse(localStorage.getItem("dreData")) || [];
+
+function salvarDados() { localStorage.setItem("dreData", JSON.stringify(dreData)); }
+
+function atualizarResultado() { if (dreData.length === 0) { resultadoEl.textContent = "Nenhum dado cadastrado."; return; }
+
+const totalReceita = dreData.reduce((acc, item) => acc + item.receita, 0);
+const totalCusto = dreData.reduce((acc, item) => acc + item.custo, 0);
+const totalDespesas = dreData.reduce((acc, item) => acc + item.despesas, 0);
+const lucro = totalReceita - totalCusto - totalDespesas;
+
+resultadoEl.innerHTML = `
+  <p><strong>Total Receita:</strong> R$ ${totalReceita.toFixed(2)}</p>
+  <p><strong>Total Custo:</strong> R$ ${totalCusto.toFixed(2)}</p>
+  <p><strong>Total Despesas:</strong> R$ ${totalDespesas.toFixed(2)}</p>
+  <p><strong>Lucro Líquido:</strong> R$ ${lucro.toFixed(2)}</p>
+`;
+
+desenharGrafico(totalReceita, totalCusto, totalDespesas, lucro);
+
 }
 
-function renderizarDre() {
-  receitasContainer.innerHTML = "";
-  despesasContainer.innerHTML = "";
+function desenharGrafico(receita, custo, despesas, lucro) { if (window.graficoDRE) window.graficoDRE.destroy();
 
-  const receitas = dreDados.filter(item => item.tipo === "receita");
-  const despesas = dreDados.filter(item => item.tipo === "despesa");
-
-  let totalReceitas = 0;
-  let totalDespesas = 0;
-
-  receitas.forEach((item, index) => {
-    totalReceitas += item.valor;
-    const div = document.createElement("div");
-    div.className = "item";
-    div.innerHTML = `${item.nome}: R$ ${item.valor.toFixed(2)} <button onclick="removerItem(${index})">Remover</button>`;
-    receitasContainer.appendChild(div);
-  });
-
-  despesas.forEach((item, index) => {
-    totalDespesas += item.valor;
-    const div = document.createElement("div");
-    div.className = "item";
-    div.innerHTML = `${item.nome}: R$ ${item.valor.toFixed(2)} <button onclick="removerItem(${index})">Remover</button>`;
-    despesasContainer.appendChild(div);
-  });
-
-  const lucro = totalReceitas - totalDespesas;
-
-  totalReceitasEl.textContent = totalReceitas.toFixed(2);
-  totalDespesasEl.textContent = totalDespesas.toFixed(2);
-  lucroPrejuizoEl.textContent = `${lucro >= 0 ? 'Lucro' : 'Prejuízo'}: R$ ${Math.abs(lucro).toFixed(2)}`;
-
-  desenharGraficoReceitaDespesa(totalReceitas, totalDespesas);
-}
-
-function removerItem(index) {
-  dreDados.splice(index, 1);
-  salvarDre();
-  renderizarDre();
-}
-
-dreForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const nome = document.getElementById("nome-dre").value;
-  const valor = parseFloat(document.getElementById("valor-dre").value);
-  const tipo = document.getElementById("tipo-dre").value;
-
-  if (!nome || isNaN(valor)) return;
-
-  dreDados.push({ nome, valor, tipo });
-  salvarDre();
-  renderizarDre();
-  dreForm.reset();
-});
-
-function desenharGraficoReceitaDespesa(receitas, despesas) {
-  const ctx = document.getElementById("grafico-dre").getContext("2d");
-
-  if (window.dreChart) {
-    window.dreChart.destroy();
-  }
-
-  window.dreChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["Receitas", "Despesas"],
-      datasets: [{
-        label: "R$",
-        data: [receitas, despesas],
-        backgroundColor: ["#4caf50", "#f44336"]
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
+window.graficoDRE = new Chart(graficoCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Receita', 'Custo', 'Despesas', 'Lucro'],
+    datasets: [{
+      label: 'DRE (Demonstração do Resultado do Exercício)',
+      data: [receita, custo, despesas, lucro],
+      backgroundColor: ['#4caf50', '#f44336', '#ff9800', '#2196f3']
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true
       }
     }
-  });
+  }
+});
+
 }
 
-// Inicializar
-renderizarDre();
+form.addEventListener("submit", (e) => { e.preventDefault();
+
+const receita = parseFloat(receitaInput.value);
+const custo = parseFloat(custoInput.value);
+const despesas = parseFloat(despesasInput.value);
+
+if (isNaN(receita) || isNaN(custo) || isNaN(despesas)) return;
+
+dreData.push({ receita, custo, despesas });
+salvarDados();
+atualizarResultado();
+form.reset();
+
+});
+
+atualizarResultado(); });
+
