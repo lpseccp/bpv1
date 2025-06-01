@@ -1,0 +1,27 @@
+<!-- estrutura.html --><!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estrutura de Capital</title>
+  <link rel="stylesheet" href="estrutura.css">
+</head>
+<body>
+  <h1>Estrutura de Capital</h1>
+  <form id="estrutura-form">
+    <label>
+      Capital Próprio:
+      <input type="number" id="capital-proprio" required>
+    </label>
+    <label>
+      Capital de Terceiros:
+      <input type="number" id="capital-terceiros" required>
+    </label>
+    <button type="submit">Calcular</button>
+  </form>  <div id="resultados">
+    <p>Participação de Capital Próprio: <strong id="participacao-proprio"></strong>%</p>
+    <p>Participação de Capital de Terceiros: <strong id="participacao-terceiros"></strong>%</p>
+    <p>Índice de Endividamento: <strong id="indice-endividamento"></strong></p>
+  </div><canvas id="grafico-estrutura"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <script src="estrutura.js"></script></body>
+</html>
