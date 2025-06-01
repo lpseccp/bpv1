@@ -1,0 +1,114 @@
+/* fluxo.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluxo {
+  max-width: 800px;
+  margin: 30px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.container-fluxo h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+form#form-fluxo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form#form-fluxo input,
+form#form-fluxo select,
+form#form-fluxo button {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+form#form-fluxo button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form#form-fluxo button:hover {
+  background-color: #115293;
+}
+
+.tabela-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+#tabela-fluxo {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#tabela-fluxo th,
+#tabela-fluxo td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#tabela-fluxo th {
+  background-color: #eeeeee;
+}
+
+#tabela-fluxo td button {
+  background-color: #f44336;
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#tabela-fluxo td button:hover {
+  background-color: #c62828;
+}
+
+.resumo {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f4f8;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.resumo span {
+  margin: 0 5px;
+}
+
+.positivo {
+  color: #2e7d32;
+}
+
+.negativo {
+  color: #c62828;
+}
+
+#grafico-fluxo {
+  max-width: 100%;
+  height: 300px;
+}
