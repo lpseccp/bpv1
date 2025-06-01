@@ -1,0 +1,50 @@
+<!-- fluxo.html --><!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluxo de Caixa</title>
+  <link rel="stylesheet" href="estrutura.css" />
+</head>
+<body>
+  <header>
+    <h1>Fluxo de Caixa</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="estrutura.html">Estrutura Patrimonial</a>
+      <a href="dre.html">DRE</a>
+      <a href="fluxo.html">Fluxo de Caixa</a>
+    </nav>
+  </header>
+  <main>
+    <section class="form-section">
+      <form id="fluxo-form">
+        <input type="text" id="descricao" placeholder="Descrição" required />
+        <input type="number" id="valor" placeholder="Valor" required />
+        <select id="tipo">
+          <option value="entrada">Entrada</option>
+          <option value="saida">Saída</option>
+        </select>
+        <input type="date" id="data" required />
+        <button type="submit">Adicionar</button>
+      </form>
+    </section><section class="lista">
+  <h2>Movimentações</h2>
+  <div id="movimentacoes"></div>
+</section>
+
+<section class="resumo">
+  <h2>Resumo</h2>
+  <p>Total de Entradas: R$ <span id="total-entradas">0.00</span></p>
+  <p>Total de Saídas: R$ <span id="total-saidas">0.00</span></p>
+  <p>Saldo Final: R$ <span id="saldo-final">0.00</span></p>
+</section>
+
+<section>
+  <canvas id="grafico-fluxo"></canvas>
+</section>
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="fluxo.js"></script>
+</body>
+</html>
