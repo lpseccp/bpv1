@@ -1,0 +1,24 @@
+<!-- comparativo.html --><!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparativo de Investimentos</title>
+  <link rel="stylesheet" href="comparativo.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container-comparativo">
+    <h2>Comparativo de Investimentos</h2><form id="form-comparativo">
+  <input type="text" id="nome1" placeholder="Ativo 1" required>
+  <input type="number" id="valor1" placeholder="Valor R$" required>
+  <input type="text" id="nome2" placeholder="Ativo 2" required>
+  <input type="number" id="valor2" placeholder="Valor R$" required>
+  <button type="submit">Comparar</button>
+</form>
+
+<canvas id="grafico-comparativo"></canvas>
+
+<div id="resultado-comparativo" class="resultado"></div>
+
+  </div>  <script src="comparativo.js"></script></body>
+</html>
