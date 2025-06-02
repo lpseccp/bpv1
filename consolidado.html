@@ -1,0 +1,35 @@
+<!-- consolidado.html --><!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consolidado</title>
+  <link rel="stylesheet" href="consolidado.css" />
+</head>
+<body>
+  <header>
+    <h1>Resumo Consolidado</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="estrutura.html">Estrutura</a>
+      <a href="drl.html">DRL</a>
+      <a href="fluxo.html">Fluxo</a>
+      <a href="comparativo.html">Comparativo</a>
+    </nav>
+  </header>  <main class="consolidado-container">
+    <section class="resumo">
+      <h2>Totais</h2>
+      <div><strong>Total de Ativos:</strong> R$ <span id="total-ativos">0,00</span></div>
+      <div><strong>Total de Passivos:</strong> R$ <span id="total-passivos">0,00</span></div>
+      <div><strong>Saldo Líquido:</strong> R$ <span id="saldo-liquido">0,00</span></div>
+    </section><section class="porcentagem">
+  <h2>Composição Percentual</h2>
+  <ul id="lista-composicao"></ul>
+</section>
+
+<section class="graficos">
+  <h2>Gráficos</h2>
+  <canvas id="grafico-consolidado"></canvas>
+</section>
+
+  </main>  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <script src="consolidado.js"></script></body>
+</html>
