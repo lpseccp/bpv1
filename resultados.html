@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resultados - Balanço Patrimonial</title>
+  <link rel="stylesheet" href="estrutura.css" />
+  <link rel="stylesheet" href="resultados.css" />
+</head>
+<body>
+  <header>
+    <h1>Balanço Patrimonial - Resultados</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="estrutura.html">Estrutura</a></li>
+        <li><a href="dre.html">DRE</a></li>
+        <li><a href="fluxo.html">Fluxo</a></li>
+        <li><a href="comparativo.html">Comparativo</a></li>
+        <li><a href="consolidado.html">Consolidado</a></li>
+        <li><a href="resultados.html" class="ativo">Resultados</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <h2>Lançar Resultado</h2>
+      <form id="resultado-form">
+        <label for="tipo-resultado">Tipo:</label>
+        <select id="tipo-resultado">
+          <option value="lucro">Lucro</option>
+          <option value="prejuizo">Prejuízo</option>
+        </select>
+
+        <label for="valor-resultado">Valor:</label>
+        <input type="number" id="valor-resultado" required />
+
+        <label for="ano-resultado">Ano:</label>
+        <input type="number" id="ano-resultado" required />
+
+        <button type="submit">Adicionar Resultado</button>
+      </form>
+    </section>
+
+    <section class="lista">
+      <h2>Histórico de Resultados</h2>
+      <div id="resultados-container"></div>
+    </section>
+
+    <section class="graficos">
+      <canvas id="grafico-resultados"></canvas>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="resultados.js"></script>
+</body>
+</html>
