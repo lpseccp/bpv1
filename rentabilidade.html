@@ -1,0 +1,47 @@
+<!-- rentabilidade.html --><!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rentabilidade</title>
+  <link rel="stylesheet" href="rentabilidade.css" />
+</head>
+<body>
+  <header>
+    <h1>Rentabilidade</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="estrutura.html">Estrutura</a>
+      <a href="dre.html">DRE</a>
+      <a href="fluxo.html">Fluxo</a>
+      <a href="comparativo.html">Comparativo</a>
+      <a href="consolidado.html">Consolidado</a>
+      <a href="resultados.html">Resultados</a>
+      <a href="historico.html">Histórico</a>
+      <a href="indicadores.html">Indicadores</a>
+      <a href="rentabilidade.html">Rentabilidade</a>
+    </nav>
+  </header>
+  <main>
+    <section class="rentabilidade-form">
+      <h2>Adicionar Dado de Rentabilidade</h2>
+      <form id="rentabilidade-form">
+        <label for="periodo">Período:</label>
+        <input type="text" id="periodo" required /><label for="lucro">Lucro Líquido:</label>
+    <input type="number" id="lucro" required />
+
+    <label for="patrimonio">Patrimônio Líquido:</label>
+    <input type="number" id="patrimonio" required />
+
+    <button type="submit">Calcular</button>
+  </form>
+</section>
+
+<section class="rentabilidade-resultados">
+  <h2>Resultados</h2>
+  <ul id="lista-rentabilidades"></ul>
+</section>
+
+  </main>
+  <script src="rentabilidade.js"></script>
+</body>
+</html>
