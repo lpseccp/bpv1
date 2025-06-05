@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Financeiro</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Visão Geral - Dashboard</h1>
+    <div class="cards">
+      <div class="card" id="total-investido">Total Investido</div>
+      <div class="card" id="rentabilidade-total">Rentabilidade Total</div>
+      <div class="card" id="risco-portfolio">Risco da Carteira</div>
+      <div class="card" id="percentual-meta">% de Meta Atingida</div>
+    </div>
+    <div class="graficos">
+      <canvas id="graficoPizza"></canvas>
+      <canvas id="graficoBarra"></canvas>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
