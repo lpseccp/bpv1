@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aportes</title>
+  <link rel="stylesheet" href="aportes.css">
+</head>
+<body>
+  <header>
+    <h1>Aportes Mensais</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="projecoes.html">Projeções</a>
+      <a href="aportes.html" class="ativo">Aportes</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="formulario-aporte">
+      <form id="aporte-form">
+        <input type="text" id="mes-aporte" placeholder="Mês/Ano (ex: 05/2025)" required>
+        <input type="number" id="valor-aporte" placeholder="Valor do Aporte (R$)" required step="0.01">
+        <button type="submit">Adicionar Aporte</button>
+      </form>
+    </section>
+
+    <section id="historico-aportes">
+      <h2>Histórico de Aportes</h2>
+      <div id="lista-aportes"></div>
+    </section>
+  </main>
+
+  <script src="aportes.js"></script>
+</body>
+</html>
