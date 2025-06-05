@@ -1,0 +1,43 @@
+<!-- projecoes.html --><!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeções Financeiras</title>
+  <link rel="stylesheet" href="projecoes.css">
+</head>
+<body>
+  <header>
+    <h1>Projeções Financeiras</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="fluxo.html">Fluxo</a>
+      <a href="comparativo.html">Comparativo</a>
+      <a href="consolidado.html">Consolidado</a>
+      <a href="resultados.html">Resultados</a>
+      <a href="historico.html">Histórico</a>
+      <a href="indicadores.html">Indicadores</a>
+      <a href="rentabilidade.html">Rentabilidade</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="projecoes.html" class="ativo">Projeções</a>
+    </nav>
+  </header>  <main>
+    <section>
+      <h2>Adicionar Projeção</h2>
+      <form id="form-projecao">
+        <input type="text" id="nome-projecao" placeholder="Nome da Projeção" required>
+        <input type="number" id="valor-projecao" placeholder="Valor" required>
+        <input type="month" id="mes-projecao" required>
+        <button type="submit">Adicionar</button>
+      </form>
+    </section><section>
+  <h2>Lista de Projeções</h2>
+  <div id="lista-projecoes"></div>
+</section>
+
+<section>
+  <h2>Gráfico de Projeções</h2>
+  <canvas id="grafico-projecoes" width="400" height="200"></canvas>
+</section>
+
+  </main>  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <script src="projecoes.js"></script></body>
+</html>
