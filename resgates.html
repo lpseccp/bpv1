@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resgates</title>
+  <link rel="stylesheet" href="estrutura.css"/>
+  <link rel="stylesheet" href="resgates.css"/>
+</head>
+<body>
+  <header>
+    <h1>Controle de Resgates</h1>
+    <a href="index.html">← Voltar ao Início</a>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <h2>Novo Resgate</h2>
+      <input type="text" id="ativoResgate" placeholder="Nome do Ativo">
+      <input type="number" id="valorResgate" placeholder="Valor Resgatado">
+      <input type="date" id="dataResgate">
+      <button onclick="adicionarResgate()">Registrar Resgate</button>
+    </section>
+
+    <section class="lista">
+      <h2>Resgates Registrados</h2>
+      <ul id="listaResgates"></ul>
+    </section>
+  </main>
+
+  <script src="resgates.js"></script>
+</body>
+</html>
