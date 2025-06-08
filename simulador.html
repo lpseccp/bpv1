@@ -1,0 +1,40 @@
+<!-- simulador.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador de Investimentos</title>
+    <link rel="stylesheet" href="simulador.css">
+</head>
+<body>
+    <header>
+        <h1>Simulador de Investimentos</h1>
+        <a href="index.html" class="voltar">← Voltar ao Início</a>
+    </header>
+
+    <main>
+        <form id="simulador-form">
+            <label for="valorInicial">Valor Inicial (R$):</label>
+            <input type="number" id="valorInicial" required>
+
+            <label for="aporteMensal">Aporte Mensal (R$):</label>
+            <input type="number" id="aporteMensal" required>
+
+            <label for="taxaJuros">Taxa de Juros Mensal (%):</label>
+            <input type="number" id="taxaJuros" required>
+
+            <label for="periodo">Período (meses):</label>
+            <input type="number" id="periodo" required>
+
+            <button type="submit">Simular</button>
+        </form>
+
+        <section id="resultado-simulacao">
+            <h2>Resultado</h2>
+            <p id="valorFinal">Preencha os campos e clique em "Simular".</p>
+        </section>
+    </main>
+
+    <script src="simulador.js"></script>
+</body>
+</html>
